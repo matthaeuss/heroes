@@ -1,71 +1,15 @@
-import './styles/main.scss';
-import { showMessage } from './lib/dom';
+import { showFetching, showMessage } from "./lib/dom";
 
-async function bake() {
-    const title = 'Baking cookies';
-    let counter = 0;
+const searchEmailElement: HTMLInputElement = document.getElementById('search-email')
+const button = document.querySelector('.search-button');
 
-    console.clear();
-    console.group(title);
-
-    counter++;
-    console.log(`${counter} - Add ingredients, `);
-    showMessage(`${counter} - Add ingredients, `, title);
-
-    counter++;
-    console.log(`${counter} - Mix ingredients, `);
-    showMessage(`${counter} - Mix ingredients, `, title, true);
-
-
-    await new Promise((resolve, reject) => {
-        function magic() {
-
-            counter++;
-            console.log(`${counter} - Bake at 325 degrees for 10 minutes, `);
-            showMessage(
-                `${counter} - Bake at 325 degrees for 10 minutes, `,
-                title,
-                true,
-            );
-            resolve(true);
-        }
-        setTimeout(magic, 3000);
-    });
-
-    counter++;
-    console.log(`${counter} - Eat cookies`);
-    showMessage(`${counter} - Eat cookies`, title, true);
-
-    console.groupEnd();
+function render(){
+    showMessage();
+    showFetching('.hero-list');
 }
 
-// @ts-ignore
-document.querySelector('#bake-cookies').addEventListener('click', async () => {
-    bake();
-});
+searchEmailElement.addEventListener('keydown', (event: KeyboardEvent) => {
+    if(event.key === 'Enter') render();
+})
 
-    // function* bakeOven(){
-    //     yield new Promise((resolve, reject) => {
-    //         function magic(){
-    //             counter++;
-    //             console.log(`${counter} - Bake at 325 degrees for 10 minutes`);
-    //             showMessage(
-    //                 `${counter} - Bake at 325 degrees for 10 minutes`,
-    //                 title,
-    //                 true,
-    //             );
-    //             resolve(true);
-    //         }
-
-    //         setTimeout(magic, 3000);
-    //     });
-    // }            
-
-    // const b = bakeOven()
-    // b.next().value.then(eat);
-
-
-    // function eat(){
- 
-    // }
 
