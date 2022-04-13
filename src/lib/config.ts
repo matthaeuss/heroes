@@ -16,5 +16,5 @@ const parseList = <T>(response: AxiosResponse) => {
 }
 
 
-export {apiUrl};
+export {apiUrl, parseList};
 
